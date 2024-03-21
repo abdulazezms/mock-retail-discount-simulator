@@ -1,5 +1,12 @@
 spring:
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URL:http://localhost:80/realms/myretailbusiness}
+          audiences: ${AUDIENCES:billing-service}
+
   data:
     mongodb:
       host: ${DB_HOST:localhost}
