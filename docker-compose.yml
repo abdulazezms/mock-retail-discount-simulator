@@ -51,6 +51,7 @@ services:
       - KEYCLOAK_HTTP_PORT=8080
       - KEYCLOAK_ADMIN_PASSWORD=local
       - KEYCLOAK_ADMIN_USER=local
+      - KEYCLOAK_EXTRA_ARGS='--import-realm'
     healthcheck:
       test: [ "CMD-SHELL", "curl localhost:8080/health" ]
       interval: 20s
@@ -59,6 +60,8 @@ services:
     depends_on:
       postgresql:
         condition: service_healthy
+    volumes:
+      - ./keycloak/:/opt/bitnami/keycloak/data/import
 
   postgresql:
     image: docker.io/bitnami/postgresql:16
