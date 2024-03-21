@@ -1,0 +1,14 @@
+spring:
+
+  data:
+    mongodb:
+      host: ${DB_HOST:localhost}
+      port: ${DB_PORT:27017}
+      database: ${DB_NAME:discount-service}
+      auto-index-creation: true
+      username: ${DB_USERNAME:local}
+      password: ${DB_PASSWORD:local}
+
+logging:
+  level:
+    web: debug

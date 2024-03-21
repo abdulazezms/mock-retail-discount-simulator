@@ -1,0 +1,95 @@
+version: '3'
+
+services:
+
+  #MONGO-RELATED
+  mongo:
+    image: mongo:7.0
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: local
+      MONGO_INITDB_ROOT_PASSWORD: local
+    ports:
+      - "27018:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    command: mongod --quiet --logpath /dev/null
+
+  mongo-express:
+    image: mongo-express:1.0
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: local
+      ME_CONFIG_MONGODB_ADMINPASSWORD: local
+      ME_CONFIG_MONGODB_URL: mongodb://local:local@mongo:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: local
+      ME_CONFIG_BASICAUTH_PASSWORD: local
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+
+  #KEYCLOAK-RELATED
+  keycloak:
+    image: bitnami/keycloak:23.0.7
+    ports:
+      - "80:8080"
+    environment:
+      - KEYCLOAK_DATABASE_SCHEMA=public
+      - KEYCLOAK_DATABASE_VENDOR=postgresql
+      - KEYCLOAK_DATABASE_USER=local
+      - KEYCLOAK_DATABASE_PASSWORD=local
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_HOST=postgresql
+      - KEYCLOAK_DATABASE_NAME=bitnami_keycloak
+      - KEYCLOAK_BIND_ADDRESS=0.0.0.0
+      - KEYCLOAK_HTTP_PORT=8080
+      - KEYCLOAK_ADMIN_PASSWORD=local
+      - KEYCLOAK_ADMIN_USER=local
+    healthcheck:
+      test: [ "CMD-SHELL", "curl localhost:8080/health" ]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+    depends_on:
+      postgresql:
+        condition: service_healthy
+
+  postgresql:
+    image: docker.io/bitnami/postgresql:16
+    environment:
+      - POSTGRESQL_USERNAME=local
+      - POSTGRESQL_DATABASE=bitnami_keycloak
+      - POSTGRESQL_PASSWORD=local
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+    healthcheck:
+      test: "pg_isready -h localhost -U localhost"
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    ports:
+      - "5433:5432"
+
+
+  #JAVA-SERVICE-BACKEND
+  backend:
+    build: .
+    environment:
+      - DB_HOST=mongo
+    ports:
+      - '8080:8080'
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+
+volumes:
+  postgresql_data:
+    driver: local

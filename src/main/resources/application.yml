@@ -1,0 +1,7 @@
+spring:
+
+  application:
+    name: discount-service
+
+  profiles:
+    default: local
