@@ -422,7 +422,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "realmRoles" : [ "default-roles-myretailbusiness", "AFFILIATE" ],
     "notBefore" : 0,
     "groups" : [ ]
   }, {
@@ -448,7 +448,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "realmRoles" : [ "CUSTOMER", "default-roles-myretailbusiness" ],
     "notBefore" : 0,
     "groups" : [ ]
   }, {
@@ -474,7 +474,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "realmRoles" : [ "default-roles-myretailbusiness", "EMPLOYEE" ],
     "notBefore" : 0,
     "groups" : [ ]
   }, {
