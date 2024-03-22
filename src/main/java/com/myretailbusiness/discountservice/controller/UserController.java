@@ -3,7 +3,7 @@ package com.myretailbusiness.discountservice.controller;
 import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
-import com.myretailbusiness.discountservice.service.bill.KeycloakService;
+import com.myretailbusiness.discountservice.service.keycloak.KeycloakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

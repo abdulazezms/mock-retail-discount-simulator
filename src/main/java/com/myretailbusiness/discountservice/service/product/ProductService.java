@@ -1,4 +1,4 @@
-package com.myretailbusiness.discountservice.service.bill;
+package com.myretailbusiness.discountservice.service.product;
 
 import com.myretailbusiness.discountservice.domain.Product;
 import com.myretailbusiness.discountservice.exception.NoResourceFoundException;

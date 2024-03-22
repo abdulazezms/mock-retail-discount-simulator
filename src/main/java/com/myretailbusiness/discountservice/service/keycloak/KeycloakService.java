@@ -1,4 +1,4 @@
-package com.myretailbusiness.discountservice.service.bill;
+package com.myretailbusiness.discountservice.service.keycloak;
 
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;

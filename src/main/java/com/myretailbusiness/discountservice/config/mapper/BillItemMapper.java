@@ -3,7 +3,7 @@ package com.myretailbusiness.discountservice.config.mapper;
 import com.myretailbusiness.discountservice.controller.body.bill.BillItemBody;
 import com.myretailbusiness.discountservice.domain.BillItem;
 import com.myretailbusiness.discountservice.domain.Product;
-import com.myretailbusiness.discountservice.service.bill.ProductService;
+import com.myretailbusiness.discountservice.service.product.ProductService;
 import org.springframework.stereotype.Component;
 
 @Component
