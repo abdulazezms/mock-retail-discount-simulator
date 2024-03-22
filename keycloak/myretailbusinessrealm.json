@@ -45,15 +45,56 @@
   "failureFactor" : 30,
   "roles" : {
     "realm" : [ {
+      "id" : "d7b3b8a7-c3c5-4f3e-a386-d41f723cc949",
+      "name" : "CUSTOMER",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
+      "attributes" : { }
+    }, {
       "id" : "8d7ee83b-bf2b-4177-9d46-d37dad726c9f",
       "name" : "default-roles-myretailbusiness",
       "description" : "${role_default-roles}",
       "composite" : true,
       "composites" : {
+        "realm" : [ "offline_access", "uma_authorization" ],
         "client" : {
           "account" : [ "view-profile", "manage-account" ]
         }
       },
+      "clientRole" : false,
+      "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
+      "attributes" : { }
+    }, {
+      "id" : "5af045b1-851f-46b2-8ff2-13c962e2ac15",
+      "name" : "uma_authorization",
+      "description" : "${role_uma_authorization}",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
+      "attributes" : { }
+    }, {
+      "id" : "72e36908-8180-4211-aaf1-d6c4ac7a0d9e",
+      "name" : "AFFILIATE",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
+      "attributes" : { }
+    }, {
+      "id" : "e53e4df2-6c9b-4612-85bc-99b3e112ba7f",
+      "name" : "EMPLOYEE",
+      "description" : "",
+      "composite" : false,
+      "clientRole" : false,
+      "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
+      "attributes" : { }
+    }, {
+      "id" : "2c1f1e61-b69b-4066-8071-3586bb0a3111",
+      "name" : "offline_access",
+      "description" : "${role_offline-access}",
+      "composite" : false,
       "clientRole" : false,
       "containerId" : "686e43e4-8ff4-4c5a-afc0-c477c2c1862e",
       "attributes" : { }
@@ -106,7 +147,7 @@
         "composite" : true,
         "composites" : {
           "client" : {
-            "realm-management" : [ "view-identity-providers", "manage-realm", "query-realms", "view-realm", "manage-events", "manage-authorization", "create-client", "view-events", "manage-identity-providers", "view-users", "view-clients", "query-groups", "manage-clients", "query-users", "query-clients", "impersonation", "manage-users", "view-authorization" ]
+            "realm-management" : [ "manage-realm", "view-identity-providers", "query-realms", "view-realm", "manage-events", "manage-authorization", "create-client", "manage-identity-providers", "view-events", "view-users", "query-groups", "view-clients", "manage-clients", "query-users", "query-clients", "impersonation", "manage-users", "view-authorization" ]
           }
         },
         "clientRole" : true,
@@ -359,6 +400,84 @@
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "webAuthnPolicyPasswordlessExtraOrigins" : [ ],
   "users" : [ {
+    "id" : "933f2f99-f453-4b40-b8dc-b796217e08e5",
+    "createdTimestamp" : 1711073722489,
+    "username" : "affiliate@myretailbusiness.com",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "affiliate",
+    "lastName" : "affiliate",
+    "email" : "affiliate@myretailbusiness.com",
+    "attributes" : {
+      "createdAt" : [ "1711074269" ]
+    },
+    "credentials" : [ {
+      "id" : "eef8c74e-fc5e-4edb-8691-1d3bb810c252",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1711073731622,
+      "secretData" : "{\"value\":\"wmS/7ekSXCXHAy/yw21wSTNSDfNHZa1qWSzL8v8id0g=\",\"salt\":\"NSvVPKTGAeQNeySsc3i5RQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "51863a50-03eb-404a-b77e-9733d1876a41",
+    "createdTimestamp" : 1711073750560,
+    "username" : "customer@myretailbusiness.com",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "customer",
+    "lastName" : "customer",
+    "email" : "customer@myretailbusiness.com",
+    "attributes" : {
+      "createdAt" : [ "1585094270" ]
+    },
+    "credentials" : [ {
+      "id" : "094c6b3d-88a6-4a06-8269-8e57c8cf577d",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1711073761474,
+      "secretData" : "{\"value\":\"MN+OgBTkWj6KIOtqR2Sl0rf6pdwNO60aVrJFkRrG8hE=\",\"salt\":\"zF4r9FE+0csU0NyIawYmSw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "a3ef861e-ff2f-4857-9217-ae0e5f533782",
+    "createdTimestamp" : 1711072663920,
+    "username" : "employee@myretailbusiness.com",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : true,
+    "firstName" : "employee",
+    "lastName" : "employee",
+    "email" : "employee@myretailbusiness.com",
+    "attributes" : {
+      "createdAt" : [ "1685094270" ]
+    },
+    "credentials" : [ {
+      "id" : "b525f516-f4db-478a-a9f4-131a29651429",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1711073701278,
+      "secretData" : "{\"value\":\"/Isfc/2g5p71iV79t4Xcd4SQHs7kMyo6pgECrOffWOc=\",\"salt\":\"Qe0TA0ZEF1dODTY/mAa5pw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-myretailbusiness" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "b7d46dbc-570c-466f-a47d-72dbab732531",
     "createdTimestamp" : 1710979580518,
     "username" : "service-account-billing-service",
@@ -473,7 +592,9 @@
     "publicClient" : true,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
@@ -508,6 +629,7 @@
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1710977947",
       "backchannel.logout.session.required" : "true",
+      "post.logout.redirect.uris" : "+",
       "display.on.consent.screen" : "false",
       "oauth2.device.authorization.grant.enabled" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false"
@@ -524,6 +646,7 @@
       "config" : {
         "user.session.note" : "clientAddress",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientAddress",
@@ -538,6 +661,7 @@
       "config" : {
         "user.session.note" : "client_id",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "client_id",
@@ -550,13 +674,15 @@
       "protocolMapper" : "oidc-usermodel-attribute-mapper",
       "consentRequired" : false,
       "config" : {
+        "aggregate.attrs" : "false",
         "introspection.token.claim" : "true",
         "userinfo.token.claim" : "true",
+        "multivalued" : "false",
         "user.attribute" : "createdAt",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "createdAt",
-        "jsonType.label" : "String"
+        "jsonType.label" : "long"
       }
     }, {
       "id" : "d8f2b585-ba38-4e2e-bfee-abaf0021c805",
@@ -568,7 +694,8 @@
         "included.client.audience" : "billing-service",
         "id.token.claim" : "false",
         "access.token.claim" : "true",
-        "introspection.token.claim" : "true"
+        "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "false"
       }
     }, {
       "id" : "4b188c36-de42-4948-83cd-63b65376c912",
@@ -579,6 +706,7 @@
       "config" : {
         "user.session.note" : "clientHost",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientHost",
@@ -607,7 +735,9 @@
     "publicClient" : false,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
@@ -633,7 +763,9 @@
     "publicClient" : false,
     "frontchannelLogout" : false,
     "protocol" : "openid-connect",
-    "attributes" : { },
+    "attributes" : {
+      "post.logout.redirect.uris" : "+"
+    },
     "authenticationFlowBindingOverrides" : { },
     "fullScopeAllowed" : false,
     "nodeReRegistrationTimeout" : 0,
@@ -1029,6 +1161,7 @@
       "config" : {
         "introspection.token.claim" : "true",
         "multivalued" : "true",
+        "userinfo.token.claim" : "true",
         "user.attribute" : "foo",
         "id.token.claim" : "true",
         "access.token.claim" : "true",
@@ -1054,7 +1187,8 @@
       "config" : {
         "id.token.claim" : "true",
         "introspection.token.claim" : "true",
-        "access.token.claim" : "true"
+        "access.token.claim" : "true",
+        "userinfo.token.claim" : "true"
       }
     } ]
   }, {
@@ -1220,7 +1354,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-role-list-mapper", "saml-user-property-mapper", "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-attribute-mapper", "oidc-usermodel-attribute-mapper", "oidc-address-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper" ]
       }
     }, {
       "id" : "42dfb6a4-8f50-422a-98b6-4e3d91e6fd0c",
@@ -1266,7 +1400,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "oidc-address-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "oidc-full-name-mapper" ]
+        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "oidc-address-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper" ]
       }
     } ],
     "org.keycloak.keys.KeyProvider" : [ {
@@ -1849,8 +1983,8 @@
     "cibaExpiresIn" : "120",
     "cibaAuthRequestedUserHint" : "login_hint",
     "oauth2DeviceCodeLifespan" : "600",
-    "oauth2DevicePollingInterval" : "5",
     "clientOfflineSessionMaxLifespan" : "0",
+    "oauth2DevicePollingInterval" : "5",
     "clientSessionIdleTimeout" : "0",
     "parRequestUriLifespan" : "60",
     "clientSessionMaxLifespan" : "0",

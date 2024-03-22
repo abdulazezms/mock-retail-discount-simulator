@@ -40,13 +40,7 @@ services:
     ports:
       - "80:8080"
     environment:
-      - KEYCLOAK_DATABASE_SCHEMA=public
-      - KEYCLOAK_DATABASE_VENDOR=postgresql
-      - KEYCLOAK_DATABASE_USER=local
-      - KEYCLOAK_DATABASE_PASSWORD=local
-      - KEYCLOAK_DATABASE_PORT=5432
-      - KEYCLOAK_DATABASE_HOST=postgresql
-      - KEYCLOAK_DATABASE_NAME=bitnami_keycloak
+      - KEYCLOAK_DATABASE_VENDOR=dev-file
       - KEYCLOAK_BIND_ADDRESS=0.0.0.0
       - KEYCLOAK_HTTP_PORT=8080
       - KEYCLOAK_ADMIN_PASSWORD=local
@@ -57,27 +51,8 @@ services:
       interval: 20s
       timeout: 5s
       retries: 10
-    depends_on:
-      postgresql:
-        condition: service_healthy
     volumes:
       - ./keycloak/:/opt/bitnami/keycloak/data/import
-
-  postgresql:
-    image: docker.io/bitnami/postgresql:16
-    environment:
-      - POSTGRESQL_USERNAME=local
-      - POSTGRESQL_DATABASE=bitnami_keycloak
-      - POSTGRESQL_PASSWORD=local
-    volumes:
-      - 'postgresql_data:/bitnami/postgresql'
-    healthcheck:
-      test: "pg_isready -h localhost -U localhost"
-      interval: 15s
-      timeout: 5s
-      retries: 6
-    ports:
-      - "5433:5432"
 
 
   #JAVA-SERVICE-BACKEND
@@ -86,6 +61,7 @@ services:
     environment:
       - DB_HOST=mongo
       - KEYCLOAK_ISSUER_URL=http://keycloak:8080/realms/myretailbusiness
+      - KEYCLOAK_SERVER_URL=http://keycloak:8080
     ports:
       - '8080:8080'
     depends_on:
