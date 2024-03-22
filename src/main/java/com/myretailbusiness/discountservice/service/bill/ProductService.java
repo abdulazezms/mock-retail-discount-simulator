@@ -1,8 +1,20 @@
 package com.myretailbusiness.discountservice.service.bill;
 
 import com.myretailbusiness.discountservice.domain.Product;
+import com.myretailbusiness.discountservice.exception.NoResourceFoundException;
+import com.myretailbusiness.discountservice.repository.ProductRepository;
+import org.springframework.stereotype.Service;
 
-public interface ProductService {
+@Service
+public class ProductService {
+    private final ProductRepository productRepository;
 
-    Product findProductById(String productId);
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public Product findProductById(String id) {
+        return productRepository.findById(id).orElseThrow(() ->
+                new NoResourceFoundException("Product with ID: " + id + " not found"));
+    }
 }
