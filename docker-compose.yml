@@ -69,7 +69,3 @@ services:
         condition: service_healthy
       mongo:
         condition: service_healthy
-
-volumes:
-  postgresql_data:
-    driver: local

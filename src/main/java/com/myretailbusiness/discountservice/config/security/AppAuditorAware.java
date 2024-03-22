@@ -23,7 +23,7 @@ public class AppAuditorAware implements AuditorAware<String> {
         if(authentication == null)
             return Optional.of("SYSTEM_ADMIN");
         else if(authentication.isAuthenticated())
-            return Optional.of(JwtUtils.getUserEmail());
+            return Optional.of(JwtUtils.getUserEmailClaim());
         else return Optional.of("ANONYMOUS");
     }
 }

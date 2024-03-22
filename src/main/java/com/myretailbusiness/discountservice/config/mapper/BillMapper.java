@@ -1,9 +1,10 @@
 package com.myretailbusiness.discountservice.config.mapper;
 
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.BillItem;
+import com.myretailbusiness.discountservice.domain.DiscountType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,16 +26,17 @@ public class BillMapper {
         return bill;
     }
 
-    public BillResponse toBillResponse(Bill body) {
-        BillResponse billResponse = new BillResponse();
+    public BillDiscountResponse toBillDiscountResponse(Bill body) {
+        BillDiscountResponse billResponse = BillDiscountResponse
+                .builder()
+                .totalBeforeDiscount(body.getTotalBeforeDiscount())
+                .totalAfterDiscount(body.getTotalAfterDiscount())
+                .discountType(body.getDiscountType() == null? DiscountType.NONE.name() : body.getDiscountType().name())
+                .discountDescription(body.getDiscountDescription())
+                .discountAmount(body.getDiscountAmount())
+                .discountRate(body.getDiscountRate())
+                .build();
         baseResponseMapper.setBaseResponseAttributes(body, billResponse);
-        billResponse.setId(body.getId());
-        billResponse.setTotalBeforeDiscount(body.getTotalBeforeDiscount());
-        billResponse.setTotalAfterDiscount(body.getTotalAfterDiscount());
-        billResponse.setDiscountType(body.getDiscountType().name());
-        billResponse.setDiscountDescription(body.getDiscountDescription());
-        billResponse.setDiscountAmount(body.getDiscountAmount());
-        billResponse.setDiscountRate(body.getDiscountRate());
         return billResponse;
     }
 }

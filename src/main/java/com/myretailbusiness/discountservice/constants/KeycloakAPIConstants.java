@@ -17,4 +17,14 @@ public class KeycloakAPIConstants {
      * Prefix used for realm level roles.
      */
     public static final String PREFIX_ROLE = "ROLE_";
+
+    /**
+     * Value of the email claim in Keycloak's issued access tokens.
+     */
+    public static final String EMAIL_CLAIM = "email";
+
+    /**
+     * Value of the createdAt claim in Keycloak's issued access tokens; long unix epoch time.
+     */
+    public static final String CREATED_AT_CLAIM = "createdAt";
 }

@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 public class Bill extends BaseEntity{
+    private String userEmail;
     private List<BillItem> billItemList;
     private Double totalBeforeDiscount;
     private Double totalAfterDiscount;

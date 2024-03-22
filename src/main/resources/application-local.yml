@@ -17,9 +17,16 @@ spring:
       password: ${DB_PASSWORD:local}
       authentication-database: admin
 
+
 logging:
   level:
     web: trace
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
 
 app:
   keycloak:

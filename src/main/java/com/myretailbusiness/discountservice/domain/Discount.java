@@ -22,4 +22,12 @@ public abstract class Discount extends BaseEntity{
     private List<Category> categoriesNotApplicable;
 
     private Integer minimumTenureInYears;
+
+    public boolean isCategoryNotApplicable(Category category) {
+        if(this.categoriesNotApplicable == null) return false;
+        for(Category categoryNotApplicable : categoriesNotApplicable)
+            if(categoryNotApplicable.getId().equals(category.getId()))
+                return true;
+        return false;
+    }
 }

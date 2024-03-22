@@ -2,7 +2,7 @@ package com.myretailbusiness.discountservice.controller;
 
 import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
 import com.myretailbusiness.discountservice.service.bill.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class BillController {
     }
 
     @PostMapping
-    public ResponseEntity<BillResponse> createBill(@RequestBody BillBody billBody) {
+    public ResponseEntity<BillDiscountResponse> createBill(@RequestBody BillBody billBody) {
         return new ResponseEntity<>(billService.createBill(billBody), HttpStatus.CREATED);
     }
 }
