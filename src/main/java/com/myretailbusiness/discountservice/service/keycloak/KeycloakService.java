@@ -2,7 +2,7 @@ package com.myretailbusiness.discountservice.service.keycloak;
 
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
-import com.myretailbusiness.discountservice.exception.IncorrectCredentials;
+import com.myretailbusiness.discountservice.exception.IncorrectCredentialsException;
 import com.myretailbusiness.discountservice.exception.ServiceUnavailableException;
 import com.myretailbusiness.discountservice.httpclient.client.keycloak.KeycloakClient;
 import feign.FeignException;
@@ -46,7 +46,7 @@ public class KeycloakService {
                     .expiresInSeconds(response.getExpiresIn())
                     .build();
         } catch (FeignException.Unauthorized ex) {
-            throw new IncorrectCredentials("Username/password is incorrect");
+            throw new IncorrectCredentialsException("Username/password is incorrect");
         } catch (Exception ex) {
             throw new ServiceUnavailableException("Auth service is unavailable now");
         }

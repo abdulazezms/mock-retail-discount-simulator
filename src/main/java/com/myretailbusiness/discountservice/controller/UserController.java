@@ -4,6 +4,7 @@ import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
 import com.myretailbusiness.discountservice.service.keycloak.KeycloakService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginBody loginBody) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody @Valid LoginBody loginBody) {
         return new ResponseEntity<>(keycloakService.authenticateUser(loginBody), HttpStatus.OK);
     }
 }

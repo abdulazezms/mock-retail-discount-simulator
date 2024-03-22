@@ -4,6 +4,7 @@ import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
 import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
 import com.myretailbusiness.discountservice.service.bill.BillService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class BillController {
     }
 
     @PostMapping
-    public ResponseEntity<BillDiscountResponse> createBill(@RequestBody BillBody billBody) {
+    public ResponseEntity<BillDiscountResponse> createBill(@RequestBody @Valid BillBody billBody) {
         return new ResponseEntity<>(billService.createBill(billBody), HttpStatus.CREATED);
     }
 }

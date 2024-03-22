@@ -2,7 +2,6 @@ package com.myretailbusiness.discountservice.config.mapper;
 
 import com.myretailbusiness.discountservice.controller.body.bill.BillItemBody;
 import com.myretailbusiness.discountservice.domain.BillItem;
-import com.myretailbusiness.discountservice.domain.Product;
 import com.myretailbusiness.discountservice.service.product.ProductService;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +17,7 @@ public class BillItemMapper {
     public BillItem toBillItem(BillItemBody billItemBody) {
         BillItem billItem = new BillItem();
         billItem.setQuantity(billItemBody.getQuantity());
-        Product product = productService.findProductById(billItemBody.getProductId());
-        billItem.setProduct(product);
+        billItem.setProduct(productService.findProductById(billItemBody.getProductId()));
         return billItem;
     }
 }
