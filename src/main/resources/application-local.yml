@@ -20,3 +20,10 @@ spring:
 logging:
   level:
     web: trace
+
+app:
+  keycloak:
+    realm: ${KEYCLOAK_REALM:myretailbusiness}
+    client-id: ${KEYCLOAK_CLIENT_ID:billing-service}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET:0Dv6ecfLyT7cykikPyqaRBrauM2KeeI1}
+    auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:80}

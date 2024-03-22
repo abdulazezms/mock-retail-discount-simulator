@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static com.myretailbusiness.discountservice.constants.APIRoutes.USERS_CONTROLLER_REQUEST_MAPPING;
+
 @Configuration
 @EnableWebSecurity
 
@@ -23,7 +25,7 @@ public class SecurityConfig {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            "/api/users/authenticate"
+            USERS_CONTROLLER_REQUEST_MAPPING
     };
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -32,17 +34,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers(AUTH_WHITELIST)
-                                .requestMatchers("/**")
+                        .requestMatchers(AUTH_WHITELIST)
                         .permitAll()
-
-//                        .requestMatchers(APIRoutes.BILLINGS_CONTROLLER_REQUEST_MAPPING + "/**")
-//                        .hasAnyRole(AppRolesConstants.CUSTOMER, AppRolesConstants.EMPLOYEE, AppRolesConstants.AFFILIATE)
+                        .requestMatchers(APIRoutes.BILLINGS_CONTROLLER_REQUEST_MAPPING + "/**")
+                        .hasAnyRole(AppRolesConstants.CUSTOMER, AppRolesConstants.EMPLOYEE, AppRolesConstants.AFFILIATE)
+                        .anyRequest().authenticated()
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
                 );
-
-//                .oauth2ResourceServer(oauth2 -> oauth2
-//                        .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
-//                );
         return http.build();
     }
 

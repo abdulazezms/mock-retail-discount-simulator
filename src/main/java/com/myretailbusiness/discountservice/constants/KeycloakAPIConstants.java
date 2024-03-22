@@ -1,9 +1,8 @@
 package com.myretailbusiness.discountservice.constants;
 
 public class KeycloakAPIConstants {
-    public final static String ADMIN_API = "/admin/realms";
     public final static String REALMS_ENDPOINT = "/realms";
-    public final static String CLIENT_TOKEN_ENDPOINT = "/protocol/openid-connect/token";
+    public final static String TOKEN_ENDPOINT = "/protocol/openid-connect/token";
 
     /**
      * Name of the claim containing the realm level roles

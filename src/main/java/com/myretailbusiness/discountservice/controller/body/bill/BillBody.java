@@ -1,4 +1,4 @@
-package com.myretailbusiness.discountservice.controller.bill;
+package com.myretailbusiness.discountservice.controller.body.bill;
 
 import lombok.Getter;
 import lombok.Setter;

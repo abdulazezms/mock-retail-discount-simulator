@@ -4,8 +4,6 @@ import com.myretailbusiness.discountservice.controller.response.BaseEntityRespon
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 public class BillResponse extends BaseEntityResponse {

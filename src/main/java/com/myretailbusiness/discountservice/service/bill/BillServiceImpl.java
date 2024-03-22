@@ -1,19 +1,13 @@
 package com.myretailbusiness.discountservice.service.bill;
 
 import com.myretailbusiness.discountservice.config.mapper.BillMapper;
-import com.myretailbusiness.discountservice.controller.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.bill.BillItemBody;
+import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
 import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.DiscountType;
-import com.myretailbusiness.discountservice.domain.Product;
 import com.myretailbusiness.discountservice.repository.BillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class BillServiceImpl implements BillService {

@@ -1,10 +1,11 @@
 package com.myretailbusiness.discountservice.config.mapper;
 
-import com.myretailbusiness.discountservice.controller.bill.BillBody;
+import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
 import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.BillItem;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
