@@ -15,7 +15,8 @@ spring:
       auto-index-creation: true
       username: ${DB_USERNAME:local}
       password: ${DB_PASSWORD:local}
+      authentication-database: admin
 
 logging:
   level:
-    web: debug
+    web: trace
