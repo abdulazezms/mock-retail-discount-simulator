@@ -1,7 +1,7 @@
 package com.myretailbusiness.discountservice.config.mapper;
 
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.BillItem;
 import com.myretailbusiness.discountservice.domain.DiscountType;
@@ -26,8 +26,8 @@ public class BillMapper {
         return bill;
     }
 
-    public BillDiscountResponse toBillDiscountResponse(Bill body) {
-        BillDiscountResponse billResponse = BillDiscountResponse
+    public BillResponse toBillDiscountResponse(Bill body) {
+        BillResponse billResponse = BillResponse
                 .builder()
                 .totalBeforeDiscount(body.getTotalBeforeDiscount())
                 .totalAfterDiscount(body.getTotalAfterDiscount())

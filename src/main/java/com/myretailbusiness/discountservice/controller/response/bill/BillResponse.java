@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BillDiscountResponse extends BaseEntityResponse implements Comparable<BillDiscountResponse> {
+public class BillResponse extends BaseEntityResponse implements Comparable<BillResponse> {
     private Double totalBeforeDiscount;
     private Double totalAfterDiscount;
     private String discountType;
@@ -18,12 +18,12 @@ public class BillDiscountResponse extends BaseEntityResponse implements Comparab
     private Double discountRate;
     private Double discountAmount;
     @Override
-    public int compareTo(BillDiscountResponse other) {
+    public int compareTo(BillResponse other) {
         return Double.compare(other.discountAmount, this.discountAmount); // Descending order by discount amount
     }
     @Override
     public String toString() {
-        return "BillDiscountResponse{" +
+        return "BillResponse{" +
                 "discountType='" + discountType + '\'' +
                 ", discountDescription='" + discountDescription + '\'' +
                 ", discountRate=" + discountRate +
@@ -31,8 +31,8 @@ public class BillDiscountResponse extends BaseEntityResponse implements Comparab
                 '}';
     }
 
-    public static BillDiscountResponse getNoDiscountFromBill(Bill bill) {
-        return BillDiscountResponse
+    public static BillResponse getNoDiscountFromBill(Bill bill) {
+        return BillResponse
                 .builder()
                 .totalAfterDiscount(bill.getTotalBeforeDiscount())
                 .totalBeforeDiscount(bill.getTotalBeforeDiscount())

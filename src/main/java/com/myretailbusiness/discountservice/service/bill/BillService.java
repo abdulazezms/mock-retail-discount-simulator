@@ -1,8 +1,8 @@
 package com.myretailbusiness.discountservice.service.bill;
 
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 
 public interface BillService {
-    BillDiscountResponse createBill(BillBody billBody);
+    BillResponse createBill(BillBody billBody);
 }

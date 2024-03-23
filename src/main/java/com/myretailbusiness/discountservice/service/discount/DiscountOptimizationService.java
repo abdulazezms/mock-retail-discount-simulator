@@ -1,6 +1,6 @@
 package com.myretailbusiness.discountservice.service.discount;
 
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.DiscountType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ public class DiscountOptimizationService {
 
     public Bill applyOptimalDiscount(Bill bill) {
         if(discountStrategyList.isEmpty()) return bill;
-        List<BillDiscountResponse> candidateOptimalDiscount = new ArrayList<>();
+        List<BillResponse> candidateOptimalDiscount = new ArrayList<>();
         for(DiscountStrategy discountStrategy : discountStrategyList) {
             candidateOptimalDiscount.add(discountStrategy.getOptimalDiscountInfo(bill));
         }
         Collections.sort(candidateOptimalDiscount);
-        BillDiscountResponse optimalDiscount = candidateOptimalDiscount.get(0);
+        BillResponse optimalDiscount = candidateOptimalDiscount.get(0);
         bill.setDiscountType(Enum.valueOf(DiscountType.class, optimalDiscount.getDiscountType()));
         bill.setDiscountAmount(optimalDiscount.getDiscountAmount());
         bill.setDiscountRate(optimalDiscount.getDiscountRate());

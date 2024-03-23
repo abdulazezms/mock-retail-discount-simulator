@@ -2,7 +2,7 @@ package com.myretailbusiness.discountservice.service.bill;
 
 import com.myretailbusiness.discountservice.config.mapper.BillMapper;
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.repository.BillRepository;
 import com.myretailbusiness.discountservice.service.discount.DiscountOptimizationService;
@@ -27,7 +27,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public BillDiscountResponse createBill(BillBody billBody) {
+    public BillResponse createBill(BillBody billBody) {
         Bill bill = billMapper.toBill(billBody);
         bill.setTotalBeforeDiscount(getBillTotal(bill));
         bill.setUserEmail(JwtUtils.getUserEmailClaim());

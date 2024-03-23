@@ -2,7 +2,7 @@ package com.myretailbusiness.discountservice.controller.bill;
 
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
 import com.myretailbusiness.discountservice.controller.body.bill.BillItemBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,20 +18,20 @@ public class BillControllerTestUtil {
         return billBody;
     }
 
-    public static BillDiscountResponse getDiscountResponse() {
-        BillDiscountResponse billDiscountResponse = new BillDiscountResponse();
-        billDiscountResponse.setDiscountDescription("Some description");
-        billDiscountResponse.setDiscountAmount(12.0);
-        billDiscountResponse.setDiscountType("NONE");
-        billDiscountResponse.setTotalAfterDiscount(22.0);
-        billDiscountResponse.setTotalBeforeDiscount(34.0);
-        billDiscountResponse.setId("id");
-        billDiscountResponse.setDiscountRate(0.2);
-        billDiscountResponse.setCreatedByUser("test");
-        billDiscountResponse.setCreatedDate(LocalDateTime.MAX);
-        billDiscountResponse.setModifiedByUser("test");
-        billDiscountResponse.setCreatedDate(LocalDateTime.MAX);
-        return billDiscountResponse;
+    public static BillResponse getDiscountResponse() {
+        BillResponse billResponse = new BillResponse();
+        billResponse.setDiscountDescription("Some description");
+        billResponse.setDiscountAmount(12.0);
+        billResponse.setDiscountType("NONE");
+        billResponse.setTotalAfterDiscount(22.0);
+        billResponse.setTotalBeforeDiscount(34.0);
+        billResponse.setId("id");
+        billResponse.setDiscountRate(0.2);
+        billResponse.setCreatedByUser("test");
+        billResponse.setCreatedDate(LocalDateTime.MAX);
+        billResponse.setModifiedByUser("test");
+        billResponse.setCreatedDate(LocalDateTime.MAX);
+        return billResponse;
     }
 
     public static BillBody getJsonBodyForBillCreationWithLargeItemQuantity(){

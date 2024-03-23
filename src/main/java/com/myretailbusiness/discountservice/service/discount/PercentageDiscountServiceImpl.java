@@ -1,6 +1,6 @@
 package com.myretailbusiness.discountservice.service.discount;
 
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.*;
 import com.myretailbusiness.discountservice.repository.PercentageDiscountRepository;
 import com.myretailbusiness.discountservice.service.role.RoleService;
@@ -30,7 +30,7 @@ public class PercentageDiscountServiceImpl implements PercentageDiscountService{
      * @return optimal discount for the user on this bill, if applicable.
      */
     @Override
-    public BillDiscountResponse getOptimalDiscountInfo(Bill bill) {
+    public BillResponse getOptimalDiscountInfo(Bill bill) {
 
         //    Conditions to be eligible for the percentage discount:
         //      1- The user's role must be in the list of rolesApplicable
@@ -44,9 +44,9 @@ public class PercentageDiscountServiceImpl implements PercentageDiscountService{
         List<PercentageDiscount> applicableDiscounts = repository
                 .findApplicableDiscounts(List.of(userRole), yearsSinceUserRegistration);
 
-        BillDiscountResponse optimalDiscount = BillDiscountResponse.getNoDiscountFromBill(bill);
+        BillResponse optimalDiscount = BillResponse.getNoDiscountFromBill(bill);
         for(PercentageDiscount candidate : applicableDiscounts) {
-            BillDiscountResponse candidateDiscount = calculateDiscount(bill, candidate);
+            BillResponse candidateDiscount = calculateDiscount(bill, candidate);
             if(optimalDiscount.compareTo(candidateDiscount) > 0.0) {
                 optimalDiscount = candidateDiscount;
             }
@@ -55,8 +55,8 @@ public class PercentageDiscountServiceImpl implements PercentageDiscountService{
     }
 
     @Override
-    public BillDiscountResponse calculateDiscount(Bill bill, PercentageDiscount percentageDiscount) {
-        BillDiscountResponse discount = BillDiscountResponse.getNoDiscountFromBill(bill);
+    public BillResponse calculateDiscount(Bill bill, PercentageDiscount percentageDiscount) {
+        BillResponse discount = BillResponse.getNoDiscountFromBill(bill);
 
         boolean discountApplied = false;
         double discountAmount = 0.0;

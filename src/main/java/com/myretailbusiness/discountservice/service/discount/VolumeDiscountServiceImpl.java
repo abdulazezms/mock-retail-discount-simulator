@@ -1,6 +1,6 @@
 package com.myretailbusiness.discountservice.service.discount;
 
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.*;
 import com.myretailbusiness.discountservice.repository.VolumeDiscountRepository;
 import com.myretailbusiness.discountservice.service.role.RoleService;
@@ -30,7 +30,7 @@ public class VolumeDiscountServiceImpl implements VolumeDiscountService{
      * @return optimal discount for the user on this bill, if applicable.
      */
     @Override
-    public BillDiscountResponse getOptimalDiscountInfo(Bill bill) {
+    public BillResponse getOptimalDiscountInfo(Bill bill) {
 
         //    Conditions to be eligible for the volume discount:
         //      1- The user's role must be in the list of rolesApplicable
@@ -46,9 +46,9 @@ public class VolumeDiscountServiceImpl implements VolumeDiscountService{
         List<VolumeDiscount> applicableDiscounts = repository
                 .findApplicableDiscounts(List.of(userRole), yearsSinceUserRegistration);
 
-        BillDiscountResponse optimalDiscount = BillDiscountResponse.getNoDiscountFromBill(bill);
+        BillResponse optimalDiscount = BillResponse.getNoDiscountFromBill(bill);
         for(VolumeDiscount candidate : applicableDiscounts) {
-            BillDiscountResponse candidateDiscount = calculateDiscount(bill, candidate);
+            BillResponse candidateDiscount = calculateDiscount(bill, candidate);
             if(optimalDiscount.compareTo(candidateDiscount) > 0.0) {
                 optimalDiscount = candidateDiscount;
             }
@@ -68,7 +68,7 @@ public class VolumeDiscountServiceImpl implements VolumeDiscountService{
     }
 
     @Override
-    public BillDiscountResponse calculateDiscount(Bill bill, VolumeDiscount volumeDiscount) {
+    public BillResponse calculateDiscount(Bill bill, VolumeDiscount volumeDiscount) {
         double sumExcludingItemsInNotApplicableCategories =
                 getSumExcludingItemsInNotApplicableCategories(bill, volumeDiscount);
 
@@ -80,14 +80,14 @@ public class VolumeDiscountServiceImpl implements VolumeDiscountService{
             log.warn("The result of division is too large and exceeds the range of int.");
             throw new RuntimeException("division is too large");
         } else if(divisionResult == 0) {
-            return BillDiscountResponse.getNoDiscountFromBill(bill);
+            return BillResponse.getNoDiscountFromBill(bill);
         }
         else {
             // Safely cast the result to an int, knowing it won't overflow
             double discountAmount = divisionResult * volumeDiscount.getDiscountAmount();
             double discountRate = discountAmount / bill.getTotalBeforeDiscount();
 
-            return BillDiscountResponse
+            return BillResponse
                     .builder()
                     .discountAmount(discountAmount)
                     .discountType(DiscountType.VOLUME_DISCOUNT.name())

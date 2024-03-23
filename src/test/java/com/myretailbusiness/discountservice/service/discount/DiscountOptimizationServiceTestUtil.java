@@ -1,12 +1,9 @@
 package com.myretailbusiness.discountservice.service.discount;
 
-import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.*;
-import com.myretailbusiness.discountservice.httpclient.response.keycloak.KeycloakAuthenticationResponse;
 
 import java.util.List;
-import java.util.Map;
 
 public class DiscountOptimizationServiceTestUtil {
 
@@ -40,31 +37,31 @@ public class DiscountOptimizationServiceTestUtil {
         return category;
     }
 
-    public static BillDiscountResponse applyPercentageDiscountWithRate(Bill bill, double rate) {
+    public static BillResponse applyPercentageDiscountWithRate(Bill bill, double rate) {
         Double totalBeforeDiscount = bill.getTotalBeforeDiscount();
-        BillDiscountResponse billDiscountResponse = new BillDiscountResponse();
-        billDiscountResponse.setDiscountType(DiscountType.PERCENTAGE_DISCOUNT.name());
-        billDiscountResponse.setDiscountRate(rate);
-        billDiscountResponse.setDiscountDescription("P description");
-        billDiscountResponse.setDiscountAmount(rate * totalBeforeDiscount);
-        billDiscountResponse.setTotalBeforeDiscount(totalBeforeDiscount);
-        billDiscountResponse.setTotalAfterDiscount(
-                totalBeforeDiscount - billDiscountResponse.getDiscountAmount()
+        BillResponse billResponse = new BillResponse();
+        billResponse.setDiscountType(DiscountType.PERCENTAGE_DISCOUNT.name());
+        billResponse.setDiscountRate(rate);
+        billResponse.setDiscountDescription("P description");
+        billResponse.setDiscountAmount(rate * totalBeforeDiscount);
+        billResponse.setTotalBeforeDiscount(totalBeforeDiscount);
+        billResponse.setTotalAfterDiscount(
+                totalBeforeDiscount - billResponse.getDiscountAmount()
         );
-        return billDiscountResponse;
+        return billResponse;
     }
 
-    public static BillDiscountResponse applyVolumeDiscountWithRate(Bill bill, double rate) {
+    public static BillResponse applyVolumeDiscountWithRate(Bill bill, double rate) {
         Double totalBeforeDiscount = bill.getTotalBeforeDiscount();
-        BillDiscountResponse billDiscountResponse = new BillDiscountResponse();
-        billDiscountResponse.setDiscountType(DiscountType.VOLUME_DISCOUNT.name());
-        billDiscountResponse.setDiscountRate(rate);
-        billDiscountResponse.setDiscountDescription("V description");
-        billDiscountResponse.setDiscountAmount(rate * totalBeforeDiscount);
-        billDiscountResponse.setTotalBeforeDiscount(totalBeforeDiscount);
-        billDiscountResponse.setTotalAfterDiscount(
-                totalBeforeDiscount - billDiscountResponse.getDiscountAmount()
+        BillResponse billResponse = new BillResponse();
+        billResponse.setDiscountType(DiscountType.VOLUME_DISCOUNT.name());
+        billResponse.setDiscountRate(rate);
+        billResponse.setDiscountDescription("V description");
+        billResponse.setDiscountAmount(rate * totalBeforeDiscount);
+        billResponse.setTotalBeforeDiscount(totalBeforeDiscount);
+        billResponse.setTotalAfterDiscount(
+                totalBeforeDiscount - billResponse.getDiscountAmount()
         );
-        return billDiscountResponse;
+        return billResponse;
     }
 }

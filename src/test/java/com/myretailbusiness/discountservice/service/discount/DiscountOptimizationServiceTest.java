@@ -1,29 +1,17 @@
 package com.myretailbusiness.discountservice.service.discount;
 
-import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
-import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
-import com.myretailbusiness.discountservice.controller.response.bill.BillDiscountResponse;
+import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
-import com.myretailbusiness.discountservice.domain.DiscountType;
-import com.myretailbusiness.discountservice.exception.IncorrectCredentialsException;
-import com.myretailbusiness.discountservice.exception.NoResourceFoundException;
-import com.myretailbusiness.discountservice.exception.ServiceUnavailableException;
-import com.myretailbusiness.discountservice.httpclient.client.keycloak.KeycloakClient;
-import com.myretailbusiness.discountservice.httpclient.response.keycloak.KeycloakAuthenticationResponse;
-import com.myretailbusiness.discountservice.service.keycloak.KeycloakServiceImpl;
-import feign.FeignException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
 import static com.myretailbusiness.discountservice.service.discount.DiscountOptimizationServiceTestUtil.*;
-import static com.myretailbusiness.discountservice.service.keycloak.KeycloakServiceTestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -52,8 +40,8 @@ public class DiscountOptimizationServiceTest {
         Bill billBeforeDiscount = getBillBeforeDiscount();
 
         // Assuming percentage discount provides a better discount than volume discount
-        BillDiscountResponse appliedPercentageDiscount = applyPercentageDiscountWithRate(billBeforeDiscount, 0.3);
-        BillDiscountResponse appliedVolumeDiscount = applyVolumeDiscountWithRate(billBeforeDiscount, 0.1);
+        BillResponse appliedPercentageDiscount = applyPercentageDiscountWithRate(billBeforeDiscount, 0.3);
+        BillResponse appliedVolumeDiscount = applyVolumeDiscountWithRate(billBeforeDiscount, 0.1);
 
         when(discountStrategy1.getOptimalDiscountInfo(billBeforeDiscount)).thenReturn(appliedPercentageDiscount);
         when(discountStrategy2.getOptimalDiscountInfo(billBeforeDiscount)).thenReturn(appliedVolumeDiscount);
