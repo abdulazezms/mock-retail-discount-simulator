@@ -23,7 +23,7 @@ public class DiscountOptimizationService {
         if(discountStrategyList.isEmpty()) return bill;
         List<BillResponse> candidateOptimalDiscount = new ArrayList<>();
         for(DiscountStrategy discountStrategy : discountStrategyList) {
-            candidateOptimalDiscount.add(discountStrategy.getOptimalDiscountInfo(bill));
+            candidateOptimalDiscount.add(discountStrategy.getBillAfterOptimalDiscount(bill));
         }
         Collections.sort(candidateOptimalDiscount);
         BillResponse optimalDiscount = candidateOptimalDiscount.get(0);

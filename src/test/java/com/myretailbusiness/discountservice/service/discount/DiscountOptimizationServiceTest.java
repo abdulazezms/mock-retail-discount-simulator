@@ -43,8 +43,8 @@ public class DiscountOptimizationServiceTest {
         BillResponse appliedPercentageDiscount = applyPercentageDiscountWithRate(billBeforeDiscount, 0.3);
         BillResponse appliedVolumeDiscount = applyVolumeDiscountWithRate(billBeforeDiscount, 0.1);
 
-        when(discountStrategy1.getOptimalDiscountInfo(billBeforeDiscount)).thenReturn(appliedPercentageDiscount);
-        when(discountStrategy2.getOptimalDiscountInfo(billBeforeDiscount)).thenReturn(appliedVolumeDiscount);
+        when(discountStrategy1.getBillAfterOptimalDiscount(billBeforeDiscount)).thenReturn(appliedPercentageDiscount);
+        when(discountStrategy2.getBillAfterOptimalDiscount(billBeforeDiscount)).thenReturn(appliedVolumeDiscount);
 
 
         Bill actualBillAfterDiscount = discountOptimizationService.applyOptimalDiscount(billBeforeDiscount);
@@ -66,8 +66,8 @@ public class DiscountOptimizationServiceTest {
         assertEquals(appliedPercentageDiscount.getDiscountAmount(),
                 actualBillAfterDiscount.getDiscountAmount());
 
-        verify(discountStrategy1, times(1)).getOptimalDiscountInfo(billBeforeDiscount);
-        verify(discountStrategy2, times(1)).getOptimalDiscountInfo(billBeforeDiscount);
+        verify(discountStrategy1, times(1)).getBillAfterOptimalDiscount(billBeforeDiscount);
+        verify(discountStrategy2, times(1)).getBillAfterOptimalDiscount(billBeforeDiscount);
     }
 
     @Test public void Should_ReturnOriginalBill_When_DiscountStrategiesThere() {
@@ -95,7 +95,7 @@ public class DiscountOptimizationServiceTest {
         assertEquals(billBeforeDiscount.getDiscountAmount(),
                 actualBillAfterDiscount.getDiscountAmount());
 
-        verify(discountStrategy1, never()).getOptimalDiscountInfo(any());
-        verify(discountStrategy2, never()).getOptimalDiscountInfo(any());
+        verify(discountStrategy1, never()).getBillAfterOptimalDiscount(any());
+        verify(discountStrategy2, never()).getBillAfterOptimalDiscount(any());
     }
 }

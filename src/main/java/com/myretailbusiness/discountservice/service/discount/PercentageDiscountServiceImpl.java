@@ -30,7 +30,7 @@ public class PercentageDiscountServiceImpl implements PercentageDiscountService{
      * @return optimal discount for the user on this bill, if applicable.
      */
     @Override
-    public BillResponse getOptimalDiscountInfo(Bill bill) {
+    public BillResponse getBillAfterOptimalDiscount(Bill bill) {
 
         //    Conditions to be eligible for the percentage discount:
         //      1- The user's role must be in the list of rolesApplicable
