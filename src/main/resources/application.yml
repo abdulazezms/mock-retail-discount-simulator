@@ -5,3 +5,26 @@ spring:
 
   profiles:
     default: local
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URL:http://localhost:80/realms/myretailbusiness}
+          audiences: ${AUDIENCES:billing-service}
+
+  data:
+    mongodb:
+      host: ${DB_HOST:localhost}
+      port: ${DB_PORT:27017}
+      database: ${DB_NAME:discount-service}
+      username: ${DB_USERNAME:local}
+      password: ${DB_PASSWORD:local}
+      authentication-database: admin
+
+app:
+  keycloak:
+    realm: ${KEYCLOAK_REALM:myretailbusiness}
+    client-id: ${KEYCLOAK_CLIENT_ID:billing-service}
+    client-secret: ${KEYCLOAK_CLIENT_SECRET:0Dv6ecfLyT7cykikPyqaRBrauM2KeeI1}
+    auth-server-url: ${KEYCLOAK_SERVER_URL:http://localhost:80}

@@ -3,13 +3,13 @@ package com.myretailbusiness.discountservice.controller.response.bill;
 import com.myretailbusiness.discountservice.controller.response.BaseEntityResponse;
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.DiscountType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BillDiscountResponse extends BaseEntityResponse implements Comparable<BillDiscountResponse> {
     private Double totalBeforeDiscount;
     private Double totalAfterDiscount;

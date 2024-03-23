@@ -1,5 +1,6 @@
 package com.myretailbusiness.discountservice.initializer;
 
+import com.myretailbusiness.discountservice.constants.AppProfiles;
 import com.myretailbusiness.discountservice.domain.*;
 import com.myretailbusiness.discountservice.repository.*;
 import jakarta.annotation.PostConstruct;
@@ -19,7 +20,7 @@ import static com.myretailbusiness.discountservice.initializer.ProductEnum.*;
 
 @Slf4j
 @Component
-@Profile("local")
+@Profile(AppProfiles.LOCAL_PROFILE)
 class DataInitializer {
     private final RoleRepository roleRepository;
 

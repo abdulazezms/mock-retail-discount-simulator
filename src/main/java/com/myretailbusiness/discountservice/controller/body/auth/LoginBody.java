@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class LoginBody {
@@ -13,4 +15,17 @@ public class LoginBody {
     private String username;
     @NotEmpty(message = "password must not be empty")
     private String password;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LoginBody loginBody = (LoginBody) o;
+        return Objects.equals(username, loginBody.username) && Objects.equals(password, loginBody.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password);
+    }
 }
