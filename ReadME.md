@@ -12,6 +12,7 @@
 - [How to Run the Unit Tests](#how-to-run-the-unit-tests)
 - [Discount Strategy](#discount-strategy)
 - [How to Calculate Net Payable Amount](#how-to-calculate-net-payable-amount)
+- [How to View API Docs](#how-to-view-api-docs)
 - [Notes](#notes)
 
 ## Introduction
@@ -31,6 +32,7 @@ been registered in the system for a minimum of X years, configured on the discou
 - Unit testing using Mockito and JUnit
 - Test code coverage with reporting
 - Test results with reporting
+- Documentation with Swagger
 
 ## Tech Stack
 
@@ -143,7 +145,8 @@ The response should be like this:
 }
 ```
 
-
+## How to Calculate Net Payable Amount
+To view the API docs by Swagger, open `http://localhost:8080/swagger-ui/index.html`
 
 ## Notes
 

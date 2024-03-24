@@ -2,8 +2,10 @@ package com.myretailbusiness.discountservice.controller;
 
 import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
+import com.myretailbusiness.discountservice.controller.docs.UserControllerDocs;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
 import com.myretailbusiness.discountservice.service.keycloak.KeycloakService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,8 @@ public class UserController {
         this.keycloakService = keycloakService;
     }
 
+    @Operation(summary = UserControllerDocs.AUTHENTICATE_USER_SUMMARY,
+            description = UserControllerDocs.AUTHENTICATE_USER_DESCRIPTION)
     @PostMapping
     public ResponseEntity<LoginResponse> authenticate(@RequestBody @Valid LoginBody loginBody) {
         return new ResponseEntity<>(keycloakService.authenticateUser(loginBody), HttpStatus.OK);

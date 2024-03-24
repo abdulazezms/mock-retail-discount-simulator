@@ -2,8 +2,11 @@ package com.myretailbusiness.discountservice.controller;
 
 import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
+import com.myretailbusiness.discountservice.controller.docs.BillControllerDocs;
+import com.myretailbusiness.discountservice.controller.docs.UserControllerDocs;
 import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.service.bill.BillService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +26,8 @@ public class BillController {
         this.billService = billService;
     }
 
+    @Operation(summary = BillControllerDocs.CREATE_BILL_SUMMARY,
+            description = BillControllerDocs.CREATE_BILL_DESCRIPTION)
     @PostMapping
     public ResponseEntity<BillResponse> createBill(@RequestBody @Valid BillBody billBody) {
         return new ResponseEntity<>(billService.createBill(billBody), HttpStatus.CREATED);
