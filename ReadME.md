@@ -168,3 +168,4 @@ To view the API docs by Swagger, open `http://localhost:8080/swagger-ui/index.ht
     to authenticate users using their credentials. To view the realm's config, please use `local` username and password 
     in the admin login console.
 - UML Class diagrams can be found in the original format (draw.io) at [this directory](uml/)
+- Sonarqube analysis results can be found at [this directory](sonarqube/)
