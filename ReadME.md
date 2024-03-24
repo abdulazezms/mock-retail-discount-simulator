@@ -145,7 +145,7 @@ The response should be like this:
 }
 ```
 
-## How to Calculate Net Payable Amount
+## How to View API Docs
 To view the API docs by Swagger, open `http://localhost:8080/swagger-ui/index.html`
 
 ## Notes
