@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
+import java.util.Optional;
+
 public final class JwtUtils {
     public static String getUserEmailClaim() {
 
@@ -20,10 +22,13 @@ public final class JwtUtils {
         // Assuming we only support a single role per user (i.e, AFFILIATE)
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         assert authentication != null && authentication.isAuthenticated();
-        return authentication.getAuthorities().stream()
+        Optional<String> roleOptional = authentication.getAuthorities().stream()
                 .map(grantedAuthority -> grantedAuthority.getAuthority().substring(5))//ROLE_
                 .filter(AppRolesConstants.APP_ROLES::contains)
-                .findFirst().get();
+                .findFirst();
+        assert roleOptional.isPresent();
+        return roleOptional.get();
+
     }
 
     public static long getUserCreatedAtClaim() {

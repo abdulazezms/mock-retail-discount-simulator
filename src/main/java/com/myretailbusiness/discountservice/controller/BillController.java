@@ -3,7 +3,6 @@ package com.myretailbusiness.discountservice.controller;
 import com.myretailbusiness.discountservice.constants.APIRoutes;
 import com.myretailbusiness.discountservice.controller.body.bill.BillBody;
 import com.myretailbusiness.discountservice.controller.docs.BillControllerDocs;
-import com.myretailbusiness.discountservice.controller.docs.UserControllerDocs;
 import com.myretailbusiness.discountservice.controller.response.bill.BillResponse;
 import com.myretailbusiness.discountservice.service.bill.BillService;
 import io.swagger.v3.oas.annotations.Operation;

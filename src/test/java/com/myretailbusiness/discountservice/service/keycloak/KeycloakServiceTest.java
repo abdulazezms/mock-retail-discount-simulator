@@ -2,29 +2,25 @@ package com.myretailbusiness.discountservice.service.keycloak;
 
 import com.myretailbusiness.discountservice.controller.body.auth.LoginBody;
 import com.myretailbusiness.discountservice.controller.response.auth.LoginResponse;
-import com.myretailbusiness.discountservice.domain.Role;
 import com.myretailbusiness.discountservice.exception.IncorrectCredentialsException;
 import com.myretailbusiness.discountservice.exception.NoResourceFoundException;
 import com.myretailbusiness.discountservice.exception.ServiceUnavailableException;
 import com.myretailbusiness.discountservice.httpclient.client.keycloak.KeycloakClient;
 import com.myretailbusiness.discountservice.httpclient.response.keycloak.KeycloakAuthenticationResponse;
-import com.myretailbusiness.discountservice.service.role.RoleServiceImpl;
 import feign.FeignException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Map;
 import java.util.Optional;
 
 import static com.myretailbusiness.discountservice.service.keycloak.KeycloakServiceTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 

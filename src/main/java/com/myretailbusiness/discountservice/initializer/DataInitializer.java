@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -84,14 +85,17 @@ class DataInitializer {
 
     private void insertProductsOnDB() {
         productRepository.deleteAll();
+        SecureRandom random = new SecureRandom(); // Compliant for security-sensitive use cases
+        int groceryPriceBound = 100;
+        int nonGroceryPriceBound = 500;
         for(ProductEnum key : products.keySet()) {
             String productName = key.name();
             String productCategory = products.get(key).name();
             double productPrice = 0.0;
             if(productCategory.equals(GROCERY.name()))
-                productPrice = 1 + (Math.random() * (10 - 1));
+                productPrice = 1.0 + (random.nextInt(groceryPriceBound) * (10 - 1));
             else
-                productPrice = 20 + (Math.random() * (500 - 1));
+                productPrice = 20.0 + (random.nextInt(nonGroceryPriceBound) * (500 - 1));
 
             Product product = new Product();
             product.setName(productName);
