@@ -86,16 +86,16 @@ class DataInitializer {
     private void insertProductsOnDB() {
         productRepository.deleteAll();
         SecureRandom random = new SecureRandom(); // Compliant for security-sensitive use cases
-        int groceryPriceBound = 100;
-        int nonGroceryPriceBound = 500;
+        int groceryPriceBound = 10;
+        int nonGroceryPriceBound = 1000;
         for(ProductEnum key : products.keySet()) {
             String productName = key.name();
             String productCategory = products.get(key).name();
-            double productPrice = 0.0;
+            double productPrice;
             if(productCategory.equals(GROCERY.name()))
-                productPrice = 1.0 + (random.nextInt(groceryPriceBound) * (10 - 1));
+                productPrice = random.nextInt(groceryPriceBound);
             else
-                productPrice = 20.0 + (random.nextInt(nonGroceryPriceBound) * (500 - 1));
+                productPrice = random.nextInt(nonGroceryPriceBound);
 
             Product product = new Product();
             product.setName(productName);

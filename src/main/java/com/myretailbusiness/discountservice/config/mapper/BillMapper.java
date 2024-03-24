@@ -5,6 +5,7 @@ import com.myretailbusiness.discountservice.controller.response.bill.BillRespons
 import com.myretailbusiness.discountservice.domain.Bill;
 import com.myretailbusiness.discountservice.domain.BillItem;
 import com.myretailbusiness.discountservice.domain.DiscountType;
+import com.myretailbusiness.discountservice.utils.JwtUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,7 +24,16 @@ public class BillMapper {
         Bill bill = new Bill();
         List<BillItem> billItemList = body.getBillItemList().stream().map(billItemMapper::toBillItem).toList();
         bill.setBillItemList(billItemList);
+        bill.setUserEmail(JwtUtils.getUserEmailClaim());
+        bill.setTotalBeforeDiscount(getBillTotal(bill));
         return bill;
+    }
+
+    private Double getBillTotal(Bill bill) {
+        return bill.getBillItemList()
+                .stream()
+                .map(billItem -> billItem.getProduct().getPrice() * (double) billItem.getQuantity())
+                .reduce(0.0, Double::sum);
     }
 
     public BillResponse toBillDiscountResponse(Bill body) {
