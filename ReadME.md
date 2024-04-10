@@ -162,8 +162,7 @@ To view the API docs by Swagger, open `http://localhost:8080/swagger-ui/index.ht
     | affiliate@myretailbusiness.com | affiliate | AFFILIATE |
     | customer@myretailbusiness.com  | customer  | CUSTOMER  |
 - The OAuth 2.0 flow used is Password Grant Type. Although this flow is insecure and will be omitted from OAuth2.1 specs, 
-    the flow has been used for the sake of simplicity. However, Client Initiated Backchannel Authentication Flow is to 
-    usually be employed in a secure environment.
+    the flow has been used for the sake of simplicity.
 - An already configured Keycloak client is imported on the realm with direct access allowed. This client is for the backend application, to be able 
     to authenticate users using their credentials. To view the realm's config, please use `local` username and password 
     in the admin login console.
